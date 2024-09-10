@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur de Pentathlon</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro">
+        <h1>Bienvenue dans l'aventure du pentathlon moderne !</h1>
+        <p>Découvre quel type de pentathlète tu pourrais devenir et comment tu pourrais exceller dans l'un des sports les plus passionnants et complets du monde.</p>
+        <video src="assets/video.mp4" autoplay muted loop></video>
+        <button id="startBtn" class="btn-start">Commencer mon parcours</button>
+    </section>
+
+    <!-- Questionnaire Section -->
+    <section id="questionnaire" class="hidden">
+        <form id="pentathlonForm">
+            <h2>Découverte de tes aptitudes physiques</h2>
+            
+            <!-- Sample Question -->
+            <div class="question">
+                <label>Quel type de sport préfères-tu ?</label>
+                <select id="q1" name="q1">
+                    <option value="individuel">Sport individuel</option>
+                    <option value="equipe">Sport d'équipe</option>
+                    <option value="plein_air">Sport de plein air</option>
+                    <option value="salle">Sport en salle</option>
+                </select>
+            </div>
+
+            <!-- Add more questions -->
+            <!-- Question 2, 3... -->
+
+            <button type="submit" class="btn-submit">Voir mon profil de pentathlète</button>
+        </form>
+    </section>
+
+    <!-- Result Section -->
+    <section id="result" class="hidden">
+        <h2>Profil de Pentathlète</h2>
+        <p id="resultText">Ton profil sera affiché ici...</p>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro, .questionnaire, .result {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-start, .btn-submit {
+    background-color: #00bfff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-start:hover, .btn-submit:hover {
+    background-color: #1e90ff;
+}
+
+.hidden {
+    display: none;
+}
+
+video {
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+
+document.getElementById('startBtn').addEventListener('click', function() {
+    document.getElementById('intro').classList.add('hidden');
+    document.getElementById('questionnaire').classList.remove('hidden');
+});
+
+document.getElementById('pentathlonForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Gather the form data (can also use formData API for better handling)
+    const q1 = document.getElementById('q1').value;
+    
+    // Calculate the result based on user input
+    let result = '';
+
+    if (q1 === 'individuel') {
+        result = "Tu excellerais probablement dans l'escrime ou le tir.";
+    } else if (q1 === 'equipe') {
+        result = "Les sports d'équipe ne sont pas typiques du pentathlon, mais tu pourrais t'épanouir dans la course et la natation.";
+    } 
+    // Continue logic with other questions
+
+    // Display the result
+    document.getElementById('questionnaire').classList.add('hidden');
+    document.getElementById('result').classList.remove('hidden');
+    document.getElementById('resultText').innerText = result;
+});
+.glow {
+    border: 1px solid #fff;
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
+}
+.section-divider {
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, #00bfff, transparent);
+}
+.fade-in {
+    animation: fadeIn 1.2s ease-in-out;
+}
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
